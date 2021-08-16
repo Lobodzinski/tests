@@ -197,7 +197,7 @@ Preparing Docker images and getting started:
      --mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
      --mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
      -t <your_docker_container_name>
-   ```<br/>
+   ```
 
    for linux:<br/>
    ```
