@@ -131,8 +131,8 @@ The part 2 ('Data Labeling and model training') is done.
 Preparing Docker images and getting started:
 
 1. Prepare docker env: 
-         2. install docker (not a part of this description),
-         3.  prepare the docker group (example for ubuntu),
+   1.2. install docker (not a part of this description),
+   1.3.  prepare the docker group (example for ubuntu),
 ```
 $ sudo groupadd docker
 $ sudo usermod -aG docker $USER
@@ -140,30 +140,29 @@ $ newgrp docker
 ```
 
 2. Creation of the Docker image
-         1. copy tar gz package to the final directory (*<cwd>*): 
-    
-         ```
+   2.1. copy tar gz package to the final directory (*<cwd>*): 
+      ```
          $ cd <cwd>
          $ cp <location_path>/product_rel_01.tgz .
-         ```
+      ```
 
-         2. upack the tar gz package & remove it aftewords: <br/>
+   2.2. upack the tar gz package & remove it aftewords: <br/>
          ```
                   $ tar zxvf product_rel_01.tgz
                   $ rm product_rel_01.tgz
          ```
 
-         3. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !): <br/>
+   2.3. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !): <br/>
          ```
          $ docker build -t <your_docker_container_name> .
          ```
          due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
 
-         4. save the container ( *<your_docker_container_name>* ) to the file <br/>
+   2.4. save the container ( *<your_docker_container_name>* ) to the file <br/>
          ```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```
          be careful: the final size of the <your_docker_container_name>.tar is ~9G or even 14GB !
 
-         5. The file ( *<your_docker_container_name>.tar* ) could be transferred to any other hostwith installed Docker Engine, loaded and started as a standalone classification process.
+   2.5. The file ( *<your_docker_container_name>.tar* ) could be transferred to any other hostwith installed Docker Engine, loaded and started as a standalone classification process.
 
 3. How to user the docker file:
    * load the docker image to the memory: <br/>
