@@ -160,7 +160,7 @@ Preparing Docker images and getting started:
    due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
 
    2.4. save the container ( *<your_docker_container_name>* ) to the file <br/>
-   ```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar``
+   ```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```
    be careful: the final size of the <your_docker_container_name>.tar is ~9G or even 14GB !
 
    2.5. The file ( *<your_docker_container_name>.tar* ) could be transferred to any other hostwith installed Docker Engine, loaded and started as a standalone classification process.
