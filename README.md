@@ -140,6 +140,7 @@ $ newgrp docker
 ```
 
 2. Creation of the Docker image
+
          1. copy tar gz package to the final directory (*<cwd>*): <br/>
          ```
          $ cd <cwd>
