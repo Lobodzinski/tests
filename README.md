@@ -276,20 +276,21 @@ In proposed metrics I use the following notation:<br/>
   * Matches_scores_{i,j} - j-th matched score between extracted j-th phrase and query from a given category i,<br/>
   * priority_{i,j} - j-th priority of the skill from categpry i-th and specified for a given Job Ad.  <br/>
   * average_{over j}{} - denotes average value over all elements belonging to the given category i.<br/>
-Proposition 1:<br/>
-metric1 = \sum_{i \in {Categories}} Matches_scores_{i,j} /(priority_{i,j} + 1)
 
-Proposition 2:<br/>
-metric2 = \sum_{i \in {Categories}} max{ Matches_scores_{i,j} /(priority_{i,j} + 1) }
+  Proposition 1:<br/>
+  metric1 = \sum_{i \in {Categories}} Matches_scores_{i,j} /(priority_{i,j} + 1)
 
-Proposition 3:<br/>
-metric3 = \sum_{i \in {Categories}} average_{over j}{ Matches_scores_{i,j} /(priority_{i,j} + 1) }
+  Proposition 2:<br/>
+  metric2 = \sum_{i \in {Categories}} max{ Matches_scores_{i,j} /(priority_{i,j} + 1) }
 
-Proposition 4:<br/>
-metric4 = \sum_{i \in {Categories}} [ \sum_{j} Matches_scores_{i,j}*(priority_{i,j} + 1) / ( \sum_{j} (priority_{i,j} + 1)) ]
+  Proposition 3:<br/> 
+  metric3 = \sum_{i \in {Categories}} average_{over j}{ Matches_scores_{i,j} /(priority_{i,j} + 1) }
 
-The list above does not complete the full set of possible formulas.
-It is not know which metric is the best. Therefore, one should compute all metrics and make a test phase to see how many of them make sense.
-This part of the implementation of the semantic comparison part can be implemented in any language.
+  Proposition 4:<br/>
+  metric4 = \sum_{i \in {Categories}} [ \sum_{j} Matches_scores_{i,j}*(priority_{i,j} + 1) / ( \sum_{j} (priority_{i,j} + 1)) ]
+
+  The list above does not complete the full set of possible formulas.
+  It is not know which metric is the best. Therefore, one should compute all metrics and make a test phase to see how many of them make sense.
+  This part of the implementation of the semantic comparison part can be implemented in any language.
 
 
