@@ -231,7 +231,7 @@ Preparing Docker images and getting started:
    You can disable it by changing the options from <br/>
    *debug: True*<br/>
    to<br/>
-   *debug: False *<br/>
+   *debug: False*<br/>
    in *product/config/config.ini*, in the *[Debug]* category.
 
 4. Format of the Output Data Frame:<br/>
