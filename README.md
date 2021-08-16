@@ -222,7 +222,8 @@ Preparing Docker images and getting started:
    DEBUG: resulting_df saved to: /root/src/output_classification/resulting_df__EdibXIsic.csv
    DEBUG: Classification stage: done
    DEBUG: start matching the file /root/src/output_classification/resulting_df__EdibXIsic.csv ...
-   DEBUG: stdout= b'DEBUG: script matching.py, input= /root/src/output_classification/resulting_df__EdibXIsic.csv\nDEBUG: matching_procedure: df.shape=                (52658, 5)\nfinal output: df (/root/src/output/resulting_df__EdibXIsic.csv) is ready !\n'
+   DEBUG: stdout= b'DEBUG: script matching.py, input= /root/src/output_classification/resulting_df__EdibXIsic.csv
+   DEBUG: matching_procedure: df.shape=(52658, 5) final output: df (/root/src/output/resulting_df__EdibXIsic.csv) is ready !
    DEBUG: stderr= b''
    DEBUG: done - for the time being !
    ```
