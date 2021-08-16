@@ -238,10 +238,10 @@ Preparing Docker images and getting started:
 The output data is created in a data frame with columns: 
 *'Category'*,*'Query'*,*'Matches'*,*'Matches_scores'*<br/>
 where:<br/>
--*'Category'*: is the group corresponding to the skill categories from the Connex database,
--*'Query'*: are the skills present in the given group from 'Category' class,
--*'Matches'*:  is the list of phrases found in the input CV that semantically correspond to the given value of 'Query',
--*'Matches_scores'*: the list of numerical values of similarity between elements of *'Matches'* and *'Query'* (corresponds to the cosine distance metric).
+* 'Category'*: is the group corresponding to the skill categories from the Connex database,
+* 'Query'*: are the skills present in the given group from 'Category' class,
+* 'Matches'*:  is the list of phrases found in the input CV that semantically correspond to the given value of 'Query',
+* 'Matches_scores'*: the list of numerical values of similarity between elements of *'Matches'* and *'Query'* (corresponds to the cosine distance metric).
 
 The example :<br/>
 *'Category'*,*'Query'*,*'Matches'*,*'Matches_scores'*<br/>
