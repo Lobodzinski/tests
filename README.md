@@ -140,17 +140,16 @@ $ newgrp docker
 ```
 
 2. Creation of the Docker image
-
 A. copy tar gz package to the final directory (*<cwd>*): <br/>
-                  ```
+         ```
                   $ cd <cwd>
                   $ cp <location_path>/product_rel_01.tgz .
-                  ```
+         ```
 
 B. upack the tar gz package & remove it aftewords: <br/>
          ```
-         $ tar zxvf product_rel_01.tgz
-         $ rm product_rel_01.tgz
+                  $ tar zxvf product_rel_01.tgz
+                  $ rm product_rel_01.tgz
          ```
 
 C. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !): <br/>
