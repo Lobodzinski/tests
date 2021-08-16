@@ -86,8 +86,8 @@ The Jupyter notebook
 *p2_sentence_classification__training_model_BERT_classifier__official.ipynb *
 script contains the necessary notes to learn the general principle of the model.
 
-Please note that this model is highly customized and is a composite of a public, pretrained model 
-(*PRE_TRAINED_MODEL_NAME = 'dbmdz/bert-base-multilingual-cased-finetuned-conll03-dutch'*) 
+Please note that this model is highly customized and is a composite of a public, pretrained model <br/>
+(*PRE_TRAINED_MODEL_NAME = 'dbmdz/bert-base-multilingual-cased-finetuned-conll03-dutch'*) <br/>
 with customized additional layers. 
 This combination allows us to achieve good results in phrase classification specific to our problem using a small sample of tagged input data (phrases).
 
