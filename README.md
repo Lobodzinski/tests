@@ -16,12 +16,11 @@ Ideally, the creation of new training files should be done by someone experience
 General overview how the semantc compariosn machine is working:
 
 In general, the semantic comparison workflow between the text in the candidate's Resume (CV) and the skill description that is part of the database consists of 2 parts:  
-a) the supervised part, which consists of 
+Markup : 1. the supervised part, which consists of 
 - extracting phrases from the CV file in pdf format,
 - training a model which classifies phrases into one of the groups: 
-personal (category 0), languages (1), education (2), experience (3),
-skills (4) and summary (5).
-b) unsupervised part: which consists in calculating similarity between phrases and skill descriptions.
+personal (category 0), languages (1), education (2), experience (3), skills (4) and summary (5).
+         2. unsupervised part: which consists in calculating similarity between phrases and skill descriptions.
 
 The model works for German and English.
 The above description is very abbreviated, and the whole algorithm is more complicated. Mainly because we have to deal with very different texts: edited in a very non-standard way, with not properly used punctuation marks, with non-standard abbreviations and jargon vocabulary. 
@@ -30,9 +29,9 @@ The above description is very abbreviated, and the whole algorithm is more compl
 Location of files and directories:
 
 I have prepared 2 mods of machine operation:
-a) fully local, which, after creating environments, can be used in fully local mode (without network access): 'product__fully_local' .
+Markup : 1. fully local, which, after creating environments, can be used in fully local mode (without network access): 'product__fully_local' .
 Its docker image is 14.7GB
-b) Using network allocated models ('product__network'). Its docker image size is 7.88GB.
+         2. Using network allocated models ('product__network'). Its docker image size is 7.88GB.
 
 You can select a module by creating a link 
 ```$ ln -s <selected_mode> product```
