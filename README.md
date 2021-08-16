@@ -140,8 +140,8 @@ $ newgrp docker
 ```
 
 2. Creation of the Docker image
-
-         1. copy tar gz package to the final directory (*<cwd>*): <br/>
+         1. copy tar gz package to the final directory (*<cwd>*): 
+    
          ```
          $ cd <cwd>
          $ cp <location_path>/product_rel_01.tgz .
