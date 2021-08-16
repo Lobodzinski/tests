@@ -3,10 +3,10 @@
 relies on an prior, automated semantic comparison of an input resume (CV) in pdf file format or a set of CVs (a set of pdf files) with all the skill categories catalogued in the Connex database. 
 Using the semantic similarities thus defined, it is possible to automatically select those resumes that most closely match the given skills profile. 
 
-# What is not done:
+## What is not done:
 despite efforts, there is no algorithm that can associate dates of experience with the description of that experience in the input pdf document of the CV. The main problem here is that the authors of the CVs are very inventive in creating multiple columns and separate areas in the CV, using different schemes for labeling dates and descriptions of experience. To the author's knowledge, the problem has not yet been solved in a global sense.   
 
-# What requires manual work:
+## What requires manual work:
 the model used to classify the phrases/sentences read from the CV input file in pdf format, should be updated regularly. 
 This requires, unfortunately, the manual creation of training files.
 The detailed procedure is described in the section 'Model training'. 
@@ -16,7 +16,7 @@ Ideally, the creation of new training files should be done by someone experience
 General overview how the semantc compariosn machine is working:
 
 In general, the semantic comparison workflow between the text in the candidate's Resume (CV) and the skill description that is part of the database consists of 2 parts:  
-(a) the supervised part, which consists of 
+a) the supervised part, which consists of 
 - extracting phrases from the CV file in pdf format,
 - training a model which classifies phrases into one of the groups: 
 personal (category 0), languages (1), education (2), experience (3),
@@ -35,7 +35,7 @@ Its docker image is 14.7GB
 b) Using network allocated models ('product__network'). Its docker image size is 7.88GB.
 
 You can select a module by creating a link 
-$ ln -s <selected_mode> product
+```$ ln -s <selected_mode> product```
 
 
 ## Part 2:
@@ -44,12 +44,12 @@ Data Labeling and model training:
 preparation of the dataframe for tagging:
 1. start :
 - go to the 'product' directory 
-$ cd product ,
+```$ cd product``` ,
 - create and activate env py37_env1 using packages listed in the file: requirements__py37_env1.txt,
 - prepare directory with CV's collection in pdf format ready for model training (e.g. /tmp/my_CV_collection/),
 - start the creation of the training dataframe:
-$ cd labeling_and_training
-$ python process__labeling_preparation.py -d | --input_dir /tmp/my_CV_collection/
+```$ cd labeling_and_training```
+```$ python process__labeling_preparation.py -d | --input_dir /tmp/my_CV_collection/```
 The final csv file containing the extracted phrases from the available CVs for the tagging process will be available as:
  /tmp/my_CV_collection/df_final/df_final.csv
 
@@ -134,25 +134,25 @@ Preparing Docker images and getting started:
 1. Prepare docker env:
 A. install docker (not a part of this description),
 B. prepare the docker group (example for ubuntu),
-$ sudo groupadd docker
-$ sudo usermod -aG docker $USER
-$ newgrp docker
+```$ sudo groupadd docker```
+```$ sudo usermod -aG docker $USER```
+```$ newgrp docker```
 
 2. Creation of the Docker image
 A. copy tar gz package to the final directory (<cwd>):
-cd <cwd>
-cp <location_path>/product_rel_01.tgz .
+```$ cd <cwd>```
+```$ cp <location_path>/product_rel_01.tgz .```
 
 B. upack the tar gz package & remove it aftewords:
-$ tar zxvf product_rel_01.tgz
-$ rm product_rel_01.tgz
+```$ tar zxvf product_rel_01.tgz```
+```$ rm product_rel_01.tgz```
 
 C. build the docker file: in <cwd> directory start the command (Don't forget the dot at the end of the command !):
-$ docker build -t <your_docker_container_name> .
+```$ docker build -t <your_docker_container_name> .```
 due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
 
 D. save the container ( <your_docker_container_name> ) to the file
-$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar
+```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```
 be careful: the final size of the <your_docker_container_name>.tar is ~9G or even 14GB !
 
 E. The file ( <your_docker_container_name>.tar ) could be transferred to any other host
@@ -161,33 +161,35 @@ process.
 
 3. How to user the docker file:
 A. load the docker image to the memory:
-$ docker load --input <your_docker_container_name>.tar
+```$ docker load --input <your_docker_container_name>.tar```
 and check if the container is properly loaded:
-$ docker images
+```$ docker images```
 the output should list the uploaded container with name your_docker_container_name .
 If the operation needs to be repeated, remove the image from memory:
-$ docker image rm -f <your_docker_container_name>
+```$ docker image rm -f <your_docker_container_name>```
 
 B.in the <cwd> directory create additional directories: Input_Entry, Output_Entry which will be used
 as the input directory ( Input_Entry ) for cv to be classified
 and for final df saved (in the csv format) in the output directory  ( Output_Entry ).
-$ mkdir -p Input_Entry
-$ mkdir -p Output_Entry
+```$ mkdir -p Input_Entry```
+```$ mkdir -p Output_Entry```
 
 C. start the uploaded container with commands:
 for Windows:
-> $myPath = (Resolve-Path .).Path
-> docker run --network=host -a stdout -i \
+```> $myPath = (Resolve-Path .).Path```
+```> docker run --network=host -a stdout -i \
 --mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
 --mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
 -t <your_docker_container_name>
+ ```
 
 for linux:
-$ myPath=`pwd`
-$ docker run --network=host -a stdout -i \
+```$ myPath=`pwd````
+```$ docker run --network=host -a stdout -i \
 --mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
 --mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
 -t <your_docker_container_name>
+ ```
 
 this command will start the standalone daemon which will process each new CV entering the
 input directory Input_Entry .
