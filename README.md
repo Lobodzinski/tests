@@ -140,30 +140,30 @@ $ newgrp docker
 ```
 
 2. Creation of the Docker image
-3. 
-         A. copy tar gz package to the final directory (*<cwd>*): <br/>
+
+A. copy tar gz package to the final directory (*<cwd>*): <br/>
                   ```
                   $ cd <cwd>
                   $ cp <location_path>/product_rel_01.tgz .
                   ```
 
-         B. upack the tar gz package & remove it aftewords: <br/>
+B. upack the tar gz package & remove it aftewords: <br/>
          ```
          $ tar zxvf product_rel_01.tgz
          $ rm product_rel_01.tgz
          ```
 
-         C. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !): <br/>
+C. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !): <br/>
          ```
          $ docker build -t <your_docker_container_name> .
          ```
          due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
 
-         D. save the container ( *<your_docker_container_name>* ) to the file <br/>
+D. save the container ( *<your_docker_container_name>* ) to the file <br/>
          ```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```
          be careful: the final size of the <your_docker_container_name>.tar is ~9G or even 14GB !
 
-         E. The file ( *<your_docker_container_name>.tar* ) could be transferred to any other host
+E. The file ( *<your_docker_container_name>.tar* ) could be transferred to any other host
          with installed Docker Engine, loaded and started as a standalone classification
          process.
 
