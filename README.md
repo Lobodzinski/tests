@@ -259,24 +259,23 @@ Experience,Bauwesen,<br/>
 Final Setup or Placing the semantic comparison inside the production pipeline:
 
 In this section (not implemented) I would like to add some comments about the use of semantic comparison in the candidate classification process. <br/>
-- **How to get best CVs:**
+- **How to get best CVs:**<br/>
 since the comparison of phrases from the input CV with queries (*'Name'* values) is done globally,
 it cannot take into account priorities determined locally on the basis of a given Job Ad (Job Ad under consideration).
 For a given Job Ad, and specified skill composition(s) (skill + tier pairs) along with priorities (created by a user), we search for those CVs (in the output of global semantic comparisons) that show similarity to the requested skills (i.e. non-zero number of phrases in the *'Matches'* or *'Matches_scores'* columns) and compute the selected metric(s) calculated based on the *'priority'* criterion (metrics - see next point 3.). For such selected set of CVs we choose the best resume(s) (with the best values of the metric) for the next stage of recruiting process.<br/>
 This part of the implementation must be integrated with the user action (creation of the skill compositions). <br/>
 
-- Proposal of metrics:<br/>
+- **Proposal of metrics:**<br/>
 here I would like to suggest some types of metrics that can be used to select the best CVs.<br/>
 By metric, I mean a single number indicating the value of a given CV for a given list of skill compositions.
 The higher the value, the better the CV.<br/>
 In fact, the issue is complicated because we do not have a global scale of comparison between different CVs. We compare the writing skills of the CV writers.<br/>
 In proposed metrics I use the following notation:<br/>
-a) i - index numbering the Categories (set of unique values in *'Category'* column of the *'Skill'* table),<br/>
-b) j - index numbering elements in a given Category i,<br/>
-c) Matches_scores_{i,j} - j-th matched score between extracted j-th phrase and query from a given category i,<br/>
-d) priority_{i,j} - j-th priority of the skill from categpry i-th and specified for a given Job Ad.  <br/>
-e) average_{over j}{} - denotes average value over all elements belonging to the given category i.<br/>
-
+  * i - index numbering the Categories (set of unique values in *'Category'* column of the *'Skill'* table),<br/>
+  * j - index numbering elements in a given Category i,<br/>
+  * Matches_scores_{i,j} - j-th matched score between extracted j-th phrase and query from a given category i,<br/>
+  * priority_{i,j} - j-th priority of the skill from categpry i-th and specified for a given Job Ad.  <br/>
+  * average_{over j}{} - denotes average value over all elements belonging to the given category i.<br/>
 Proposition 1:<br/>
 metric1 = \sum_{i \in {Categories}} Matches_scores_{i,j} /(priority_{i,j} + 1)
 
