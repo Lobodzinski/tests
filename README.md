@@ -72,6 +72,7 @@ education      |           2
 experience       |         3
 skills             |       4
 summary              |     5
+
 The result of tagging/classifying phrases should be stored in the *'tag'* column as natural numbers.
 After completing this process and saving the data, we can proceed to the model training step.
 
