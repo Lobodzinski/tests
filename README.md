@@ -62,7 +62,8 @@ the final data frame prepared for the manual tagging operation is saved as:<br/>
 The data frame contains 3 columns named: <br/>
 *'entry','tag','entry_orig'*<br/>
 where the *'entry'* and *'entry_orig'* columns contain the extracted phrases that should be classified . The phrases in the *'entry'* are written with small letters and without special signs. Original formulation is saved in the *'entry_orig'* column . This is due to the requirements of the model related to the list of special characters.  <br/>
-The phrases should be classified according to the scheme:<br/>
+The phrases should be classified according to the scheme:
+
 class of the phrase: | tag/label value: 
 ------------ | -------------
 personal     |             0
