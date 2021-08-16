@@ -213,25 +213,25 @@ Preparing Docker images and getting started:
    The program is ready for semantic comparisons of the CV entries with the requested skills if the text "Initialization is succesfull !" appears.
 
    3.4 An example of an output of the program for the CV processing. The input file: *EdibXIsic.pdf*:<br/>
-   """
-         DEBUG: Received created file: /root/src/input/EdibXIsic.pdf;
-         DEBUG: file (/root/src/input/EdibXIsic.pdf) is copied: size= 176269
-         Classification stage: started ...
-         Preparing final output ... 
-         DEBUG: resulting_df.shape= (148, 5)
-         DEBUG: resulting_df saved to: /root/src/output_classification/resulting_df__EdibXIsic.csv
-         DEBUG: Classification stage: done
-         DEBUG: start matching the file /root/src/output_classification/resulting_df__EdibXIsic.csv ...
-         DEBUG: stdout= b'DEBUG: script matching.py, input= /root/src/output_classification/resulting_df__EdibXIsic.csv\nDEBUG: matching_procedure: df.shape=                (52658, 5)\nfinal output: df (/root/src/output/resulting_df__EdibXIsic.csv) is ready !\n'
-         DEBUG: stderr= b''
-         DEBUG: done - for the time being !
-  """<br/>
-  Most control texts are preceded by the word 'DEBUG'. <br/>
-  You can disable it by changing the options from <br/>
-  *debug: True*<br/>
-  to<br/>
-  *debug: False *<br/>
-  in *product/config/config.ini*, in the *[Debug]* category.
+   ```
+   DEBUG: Received created file: /root/src/input/EdibXIsic.pdf;
+   DEBUG: file (/root/src/input/EdibXIsic.pdf) is copied: size= 176269
+   Classification stage: started ...
+   Preparing final output ... 
+   DEBUG: resulting_df.shape= (148, 5)
+   DEBUG: resulting_df saved to: /root/src/output_classification/resulting_df__EdibXIsic.csv
+   DEBUG: Classification stage: done
+   DEBUG: start matching the file /root/src/output_classification/resulting_df__EdibXIsic.csv ...
+   DEBUG: stdout= b'DEBUG: script matching.py, input= /root/src/output_classification/resulting_df__EdibXIsic.csv\nDEBUG: matching_procedure: df.shape=                (52658, 5)\nfinal output: df (/root/src/output/resulting_df__EdibXIsic.csv) is ready !\n'
+   DEBUG: stderr= b''
+   DEBUG: done - for the time being !
+   ```
+   Most control texts are preceded by the word 'DEBUG'. <br/>
+   You can disable it by changing the options from <br/>
+   *debug: True*<br/>
+   to<br/>
+   *debug: False *<br/>
+   in *product/config/config.ini*, in the *[Debug]* category.
 
 4. Format of the Output Data Frame:<br/>
 The output data is created in a data frame with columns: 
