@@ -141,93 +141,93 @@ $ newgrp docker
 
 2. Creation of the Docker image
          A. copy tar gz package to the final directory (*<cwd>*):
-```
-$ cd <cwd>
-$ cp <location_path>/product_rel_01.tgz .
-```
+         ```
+         $ cd <cwd>
+         $ cp <location_path>/product_rel_01.tgz .
+         ```
 
          B. upack the tar gz package & remove it aftewords:
-```
-$ tar zxvf product_rel_01.tgz
-$ rm product_rel_01.tgz
-```
+         ```
+         $ tar zxvf product_rel_01.tgz
+         $ rm product_rel_01.tgz
+         ```
 
-         C. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !):<br/>
-```$ docker build -t <your_docker_container_name> .```<br/>
-due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
+         C. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !):
+         ```
+         $ docker build -t <your_docker_container_name> .
+         ```
+         due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
 
-D. save the container ( *<your_docker_container_name>* ) to the file<br/>
-```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```<br/>
-be careful: the final size of the <your_docker_container_name>.tar is ~9G or even 14GB !
+         D. save the container ( *<your_docker_container_name>* ) to the file
+         ```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```
+         be careful: the final size of the <your_docker_container_name>.tar is ~9G or even 14GB !
 
-E. The file ( *<your_docker_container_name>.tar* ) could be transferred to any other host
-with installed Docker Engine, loaded and started as a standalone classification
-process.
+         E. The file ( *<your_docker_container_name>.tar* ) could be transferred to any other host
+         with installed Docker Engine, loaded and started as a standalone classification
+         process.
 
 3. How to user the docker file:
-A. load the docker image to the memory:<br/>
-```$ docker load --input <your_docker_container_name>.tar```<br/>
-and check if the container is properly loaded:<br/>
-```$ docker images```<br/>
-the output should list the uploaded container with name *<your_docker_container_name>* .
-If the operation needs to be repeated, remove the image from memory:<br/>
-```$ docker image rm -f <your_docker_container_name>```
+         A. load the docker image to the memory:
+         ```
+         $ docker load --input <your_docker_container_name>.tar
+         ```
+         and check if the container is properly loaded:
+         ```$ docker images```<br/>
+         the output should list the uploaded container with name *<your_docker_container_name>* .
+         If the operation needs to be repeated, remove the image from memory:
+         ```$ docker image rm -f <your_docker_container_name>```
 
-B.in the *<cwd>* directory create additional directories: *Input_Entry*, *Output_Entry* which will be used
-as the input directory ( *Input_Entry* ) for cv to be classified
-and for final df saved (in the csv format) in the output directory  ( *Output_Entry* ).
-```
+         B.in the *<cwd>* directory create additional directories: *Input_Entry*, *Output_Entry* which will be used
+         as the input directory ( *Input_Entry* ) for cv to be classified and for final df saved (in the csv format) in the output directory  ( *Output_Entry* ).
+         ```
          $ mkdir -p Input_Entry
          $ mkdir -p Output_Entry
-```
+         ```
 
-C. start the uploaded container with commands:<br/>
-for Windows:<br/>
-```
-> $myPath = (Resolve-Path .).Path
-> docker run --network=host -a stdout -i \
---mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
---mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
--t <your_docker_container_name>
- ```
+         C. start the uploaded container with commands:<br/>
+         for Windows:<br/>
+         ```      
+         > $myPath = (Resolve-Path .).Path
+         > docker run --network=host -a stdout -i \
+         --mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
+         --mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
+         -t <your_docker_container_name>
+         ```
 
-for linux:<br/>
-```
-$ myPath=`pwd`
-$ docker run --network=host -a stdout -i \
---mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
---mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
--t <your_docker_container_name>
-```
+         for linux:<br/>
+         ```
+         $ myPath=`pwd`
+         $ docker run --network=host -a stdout -i \
+         --mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
+         --mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
+         -t <your_docker_container_name>
+         ```
 
-this command will start the standalone daemon which will process each new CV entering the
-input directory Input_Entry .<br/>
-First, the models are initialized and the program needs a minute before all the initiations
-steps have been completed.
-The program is ready for semantic comparisons of the CV entries with the requested skills 
-if the text "Initialization is succesfull !" appears.
+         this command will start the standalone daemon which will process each new CV entering the
+         input directory Input_Entry .<br/>
+         First, the models are initialized and the program needs a minute before all the initiations steps have been completed.
+         The program is ready for semantic comparisons of the CV entries with the requested skills if the text "Initialization is succesfull !" appears.
 
-D. An example of an output of the program for the CV processing. The input file: *EdibXIsic.pdf*:<br/>
-
-"""
-DEBUG: Received created file: /root/src/input/EdibXIsic.pdf;
-DEBUG: file (/root/src/input/EdibXIsic.pdf) is copied: size= 176269
-Classification stage: started ...
-Preparing final output ... 
-DEBUG: resulting_df.shape= (148, 5)
-DEBUG: resulting_df saved to: /root/src/output_classification/resulting_df__EdibXIsic.csv
-DEBUG: Classification stage: done
-DEBUG: start matching the file /root/src/output_classification/resulting_df__EdibXIsic.csv ...
-DEBUG: stdout= b'DEBUG: script matching.py, input= /root/src/output_classification/resulting_df__EdibXIsic.csv\nDEBUG: matching_procedure: df.shape= (52658, 5)\nfinal output: df (/root/src/output/resulting_df__EdibXIsic.csv) is ready !\n'
-DEBUG: stderr= b''
-DEBUG: done - for the time being !
-"""
-Most control texts are preceded by the word 'DEBUG'. <br/>
-You can disable it by changing the options from <br/>
-*debug: True*<br/>
-to<br/>
-*debug: False *<br/>
-in *product/config/config.ini*, in the *[Debug]* category.
+         D. An example of an output of the program for the CV processing. The input file: *EdibXIsic.pdf*:<br/>
+         """
+         DEBUG: Received created file: /root/src/input/EdibXIsic.pdf;
+         DEBUG: file (/root/src/input/EdibXIsic.pdf) is copied: size= 176269
+         Classification stage: started ...
+         Preparing final output ... 
+         DEBUG: resulting_df.shape= (148, 5)
+         DEBUG: resulting_df saved to: /root/src/output_classification/resulting_df__EdibXIsic.csv
+         DEBUG: Classification stage: done
+         DEBUG: start matching the file /root/src/output_classification/resulting_df__EdibXIsic.csv ...
+         DEBUG: stdout= b'DEBUG: script matching.py, input= /root/src/output_classification/resulting_df__EdibXIsic.csv\nDEBUG: matching_procedure: df.shape=                (52658, 5)\nfinal output: df (/root/src/output/resulting_df__EdibXIsic.csv) is ready !\n'
+         DEBUG: stderr= b''
+         DEBUG: done - for the time being !
+         """
+         Most control texts are preceded by the word 'DEBUG'. <br/>
+         You can disable it by changing the options from <br/>
+         *debug: True*<br/>
+         to<br/>
+         *debug: False *<br/>
+         in *product/config/config.ini*, in the *[Debug]* category.
 
 4. Format of the Output Data Frame:<br/>
 The output data is created in a data frame with columns: 
