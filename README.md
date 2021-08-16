@@ -153,8 +153,7 @@ Preparing Docker images and getting started:
 
    1.1. install docker (not a part of this description),
   
-   1.2. prepare the docker group (example for ubuntu),
-        ```
+   1.2. prepare the docker group (example for ubuntu),```
         $ sudo groupadd docker
         $ sudo usermod -aG docker $USER
         $ newgrp docker
