@@ -208,12 +208,12 @@ Preparing Docker images and getting started:
      -t <your_docker_container_name>
    ```
 
-   this command will start the standalone daemon which will process each new CV entering the input directory Input_Entry .<br/>
+   this command will start the standalone daemon which will process each new CV entering the input directory *Input_Entry* .<br/>
    First, the models are initialized and the program needs a minute before all the initiations steps have been completed.
    The program is ready for semantic comparisons of the CV entries with the requested skills if the text "Initialization is succesfull !" appears.
 
-  3.4 An example of an output of the program for the CV processing. The input file: *EdibXIsic.pdf*:<br/>
-  """
+   3.4 An example of an output of the program for the CV processing. The input file: *EdibXIsic.pdf*:<br/>
+   """
          DEBUG: Received created file: /root/src/input/EdibXIsic.pdf;
          DEBUG: file (/root/src/input/EdibXIsic.pdf) is copied: size= 176269
          Classification stage: started ...
