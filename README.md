@@ -9,7 +9,7 @@ despite efforts, there is no algorithm that can associate dates of experience wi
 ## What requires manual work:
 the model used to classify the phrases/sentences read from the CV input file in pdf format, should be updated regularly. 
 This requires, unfortunately, the manual creation of training files.
-The detailed procedure is described in the section 'Model training'. 
+The detailed procedure is described in the section *'Model training'*. 
 Ideally, the creation of new training files should be done by someone experienced in reading candidate resumes.
 
 ## Part 0:
@@ -18,8 +18,8 @@ General overview how the semantc compariosn machine is working:
 In general, the semantic comparison workflow between the text in the candidate's Resume (CV) and the skill description that is part of the database consists of 2 parts:  
 1. the supervised part, which consists of 
          - extracting phrases from the CV file in pdf format,
-         - training a model which classifies phrases into one of the groups: 
-         personal (category 0), languages (1), education (2), experience (3), skills (4) and summary (5).
+         - training a model which classifies phrases into one of the groups: <br/>
+         *personal (category 0), languages (1), education (2), experience (3), skills (4) and summary (5)*.
 2. unsupervised part: which consists in calculating similarity between phrases and skill descriptions.
 
 The model works for German and English.
@@ -29,11 +29,11 @@ The above description is very abbreviated, and the whole algorithm is more compl
 Location of files and directories:
 
 I have prepared 2 mods of machine operation:
-1. fully local, which, after creating environments, can be used in fully local mode (without network access): 'product__fully_local' .
+1. fully local, which, after creating environments, can be used in fully local mode (without network access): *'product__fully_local'* .
 Its docker image is 14.7GB
-2. Using network allocated models ('product__network'). Its docker image size is 7.88GB.
+2. Using network allocated models (*'product__network'*). Its docker image size is 7.88GB.
 
-You can select a module by creating a link 
+You can select a module by creating a link <br/>
 ```$ ln -s <selected_mode> product```
 
 
@@ -42,26 +42,28 @@ Data Labeling and model training:
 
 preparation of the dataframe for tagging:
 1. start :
-- go to the 'product' directory 
+- go to the 'product' directory <br/>
 ```$ cd product``` ,
-- create and activate env py37_env1 using packages listed in the file: requirements__py37_env1.txt,
-- prepare directory with CV's collection in pdf format ready for model training (e.g. /tmp/my_CV_collection/),
-- start the creation of the training dataframe:
-```$ cd labeling_and_training```
-```$ python process__labeling_preparation.py -d | --input_dir /tmp/my_CV_collection/```
-The final csv file containing the extracted phrases from the available CVs for the tagging process will be available as:
- /tmp/my_CV_collection/df_final/df_final.csv
+- create and activate env py37_env1 using packages listed in the file: *requirements__py37_env1.txt*,
+- prepare directory with CV's collection in pdf format ready for model training (e.g. */tmp/my_CV_collection/*),
+- start the creation of the training dataframe:<br/>
+```
+$ cd labeling_and_training
+$ python process__labeling_preparation.py -d | --input_dir /tmp/my_CV_collection/
+```
+The final csv file containing the extracted phrases from the available CVs for the tagging process will be available as:<br/>
+*/tmp/my_CV_collection/df_final/df_final.csv*
 
 2. Output:
-the final data frame prepared for the manual tagging operation is saved as:
-/tmp/my_CV_collection/df_final/df_final.csv
+the final data frame prepared for the manual tagging operation is saved as:<br/>
+*/tmp/my_CV_collection/df_final/df_final.csv*
 
 3. Tagging operation:
 
-The data frame contains 3 columns named: 
-'entry','tag','entry_orig' 
-where the 'entry' and 'entry_orig' columns contain the extracted phrases that should be classified . The phrases in the 'entry' are written with small letters. Original formulation is saved in the 'entry_orig' column . This is due to the requirements of the model related to the list of special characters.  
-The phrases should be classified according to the scheme:
+The data frame contains 3 columns named: <br/>
+*'entry','tag','entry_orig'*<br/>
+where the *'entry'* and *'entry_orig'* columns contain the extracted phrases that should be classified . The phrases in the *'entry'* are written with small letters and without special signs. Original formulation is saved in the *'entry_orig'* column . This is due to the requirements of the model related to the list of special characters.  <br/>
+The phrases should be classified according to the scheme:<br/>
 
 class of the phrase:    tag/label value: 
 personal                0
@@ -72,27 +74,27 @@ skills                  4
 summary                 5
 
 
-The result of tagging/classifying phrases should be stored in the 'tag' column as natural numbers.
+The result of tagging/classifying phrases should be stored in the *'tag'* column as natural numbers.
 After completing this process and saving the data, we can proceed to the model training step.
 
 4. Model training: 
-Training a model is very complicated and this is the task for an expert ! .
+**Training a model is very complicated and this is the task for an expert ! **.<br/>
 It requires knowledge of many details related to the architecture and operation of neural networks, especially the Transformer model (https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)).
 
 The model training can also be a test of a modified neural network architecture. 
 Therefore, training should preferably be done using the jupyter-notebook framework. 
 The Jupyter notebook 
-p2_sentence_classification__training_model_BERT_classifier__official.ipynb 
+*p2_sentence_classification__training_model_BERT_classifier__official.ipynb *
 script contains the necessary notes to learn the general principle of the model.
 
 Please note that this model is highly customized and is a composite of a public, pretrained model 
-(PRE_TRAINED_MODEL_NAME = 'dbmdz/bert-base-multilingual-cased-finetuned-conll03-dutch') 
+(*PRE_TRAINED_MODEL_NAME = 'dbmdz/bert-base-multilingual-cased-finetuned-conll03-dutch'*) 
 with customized additional layers. 
 This combination allows us to achieve good results in phrase classification specific to our problem using a small sample of tagged input data (phrases).
 
-Hints for better models:
-- check regularly the public transformer base of pretrained models (https://huggingface.co/dbmdz).
-Investigate how the new public pretrained models affect the final training result. 
+Hints for better models:<br/>
+- check regularly the public transformer base of pretrained models (https://huggingface.co/dbmdz).<br/>
+- Investigate how the new public pretrained models affect the final training result. 
 If the results are better (confussion matrix, F1-score) then use the new model in the production process. 
 
 5. Current model:
@@ -112,22 +114,22 @@ The classification report of the currently operating model is as follows:
    macro avg       0.79      0.82      0.80       170
 weighted avg       0.85      0.85      0.85       170
 
-The confusion matrix is shown on the Figure "Classification_report__confusion_matrix.png".
+The confusion matrix is shown on the Figure *'Classification_report__confusion_matrix.png'*.
 
 6. Model update:
 
-If the newly created model has better values (precision, recall, and especially f1-score) then you should replace the existing model with the new one.
+If the newly created model has better values (precision, recall, and especially **f1-score**) then you should replace the existing model with the new one.
 
 7. Model replacement:
 
-copy the new model to the directory defined in your product/config/config.ini and update the name of the model in th file.
-So, in the section 'Parameters': 
+copy the new model to the directory defined in your *product/config/config.ini* and update the name of the model in th file.
+So, in the section *'Parameters'*: 
 the model location is defined by value of the parameter 'model_directory' and 
 the model name as value of the 'model_name' parameter.
 
 The part 2 ('Data Labeling and model training') is done.
 
-Part 3:
+## Part 3:
 Preparing Docker images and getting started:
 
 1. Prepare docker env:
