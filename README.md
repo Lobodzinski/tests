@@ -131,29 +131,33 @@ The part 2 ('Data Labeling and model training') is done.
 Preparing Docker images and getting started:
 
 1. Prepare docker env: 
+
   1.1. install docker (not a part of this description),
+  
   1.2. prepare the docker group (example for ubuntu),
-         ```
-         $ sudo groupadd docker
-         $ sudo usermod -aG docker $USER
-         $ newgrp docker
-         ```
+       ```
+       $ sudo groupadd docker
+       $ sudo usermod -aG docker $USER
+       $ newgrp docker
+       ```
+       
 2. Creation of the Docker image
+
   2.1. copy tar gz package to the final directory (*<cwd>*): 
-      ```
-         $ cd <cwd>
-         $ cp <location_path>/product_rel_01.tgz .
-      ```
+       ```
+       $ cd <cwd>
+       $ cp <location_path>/product_rel_01.tgz .
+       ```
    2.2. upack the tar gz package & remove it aftewords: <br/>
-         ```
+        ```
                   $ tar zxvf product_rel_01.tgz
                   $ rm product_rel_01.tgz
-         ```
+        ```
    2.3. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !): <br/>
-         ```
-         $ docker build -t <your_docker_container_name> .
-         ```
-         due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
+        ```
+        $ docker build -t <your_docker_container_name> .
+        ```
+        due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
 
    2.4. save the container ( *<your_docker_container_name>* ) to the file <br/>
          ```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```
