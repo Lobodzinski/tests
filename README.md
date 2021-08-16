@@ -1,18 +1,18 @@
-Main Idea of the Proposed Process:
+## Main Idea of the Proposed Process:
 
 relies on an prior, automated semantic comparison of an input resume (CV) in pdf file format or a set of CVs (a set of pdf files) with all the skill categories catalogued in the Connex database. 
 Using the semantic similarities thus defined, it is possible to automatically select those resumes that most closely match the given skills profile. 
 
-What is not done:
+# What is not done:
 despite efforts, there is no algorithm that can associate dates of experience with the description of that experience in the input pdf document of the CV. The main problem here is that the authors of the CVs are very inventive in creating multiple columns and separate areas in the CV, using different schemes for labeling dates and descriptions of experience. To the author's knowledge, the problem has not yet been solved in a global sense.   
 
-What requires manual work:
+# What requires manual work:
 the model used to classify the phrases/sentences read from the CV input file in pdf format, should be updated regularly. 
 This requires, unfortunately, the manual creation of training files.
 The detailed procedure is described in the section 'Model training'. 
 Ideally, the creation of new training files should be done by someone experienced in reading candidate resumes.
 
-Part 0:
+## Part 0:
 General overview how the semantc compariosn machine is working:
 
 In general, the semantic comparison workflow between the text in the candidate's Resume (CV) and the skill description that is part of the database consists of 2 parts:  
@@ -26,7 +26,7 @@ b) unsupervised part: which consists in calculating similarity between phrases a
 The model works for German and English.
 The above description is very abbreviated, and the whole algorithm is more complicated. Mainly because we have to deal with very different texts: edited in a very non-standard way, with not properly used punctuation marks, with non-standard abbreviations and jargon vocabulary. 
 
-Part 1:
+## Part 1:
 Location of files and directories:
 
 I have prepared 2 mods of machine operation:
@@ -38,7 +38,7 @@ You can select a module by creating a link
 $ ln -s <selected_mode> product
 
 
-Part 2:
+## Part 2:
 Data Labeling and model training:
 
 preparation of the dataframe for tagging:
@@ -239,7 +239,7 @@ Experience,Bauwesen,
  "[0.60041583,0.46913487,0.41668913,0.36673641,0.35518056,0.33034697,0.32709813]"
 ....
 
-Part 4:
+## Part 4:
 Final Setup or  
 Placing the semantic comparison inside the production pipeline:
 
