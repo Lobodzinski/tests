@@ -130,16 +130,35 @@ The part 2 ('Data Labeling and model training') is done.
 ## Part 3:
 Preparing Docker images and getting started:
 
+1. Dog
+
+    1. German Shepherd
+
+    2. Belgian Shepherd
+
+        1. Malinois
+
+        2. Groenendael
+
+        3. Tervuren
+
+2. Cat
+
+    1. Siberian
+
+    2. Siamese
+
+
 1. Prepare docker env: 
 
-  1.1. install docker (not a part of this description),
+   1.1. install docker (not a part of this description),
   
-  1.2. prepare the docker group (example for ubuntu),
-       ```
-       $ sudo groupadd docker
-       $ sudo usermod -aG docker $USER
-       $ newgrp docker
-       ```
+   1.2. prepare the docker group (example for ubuntu),
+        ```
+        $ sudo groupadd docker
+        $ sudo usermod -aG docker $USER
+        $ newgrp docker
+        ```
        
 2. Creation of the Docker image
 
