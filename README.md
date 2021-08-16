@@ -46,7 +46,7 @@ preparation of the dataframe for tagging:
 ```$ cd product``` ,
 - create and activate env *py37_env1* using packages listed in the file: *requirements__py37_env1.txt*,
 - prepare directory with CV's collection in pdf format ready for model training (e.g. */tmp/my_CV_collection/*),
-- start the creation of the training dataframe:<br/>
+- start the creation of the training dataframe:
 ```
 $ cd labeling_and_training
 $ python process__labeling_preparation.py -d | --input_dir /tmp/my_CV_collection/
