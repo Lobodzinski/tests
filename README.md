@@ -131,14 +131,16 @@ The part 2 ('Data Labeling and model training') is done.
 Preparing Docker images and getting started:
 
 1. Prepare docker env: 
+
   1.2. install docker (not a part of this description),
   1.3. prepare the docker group (example for ubuntu),
-```
-$ sudo groupadd docker
-$ sudo usermod -aG docker $USER
-$ newgrp docker
-```
+         ```
+         $ sudo groupadd docker
+         $ sudo usermod -aG docker $USER
+         $ newgrp docker
+         ```
 2. Creation of the Docker image
+
   2.1. copy tar gz package to the final directory (*<cwd>*): 
       ```
          $ cd <cwd>
