@@ -140,25 +140,26 @@ $ newgrp docker
 ```
 
 2. Creation of the Docker image
-         A. copy tar gz package to the final directory (*<cwd>*):
+3. 
+         A. copy tar gz package to the final directory (*<cwd>*): <br/>
                   ```
                   $ cd <cwd>
                   $ cp <location_path>/product_rel_01.tgz .
                   ```
 
-         B. upack the tar gz package & remove it aftewords:
+         B. upack the tar gz package & remove it aftewords: <br/>
          ```
          $ tar zxvf product_rel_01.tgz
          $ rm product_rel_01.tgz
          ```
 
-         C. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !):
+         C. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !): <br/>
          ```
          $ docker build -t <your_docker_container_name> .
          ```
          due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
 
-         D. save the container ( *<your_docker_container_name>* ) to the file
+         D. save the container ( *<your_docker_container_name>* ) to the file <br/>
          ```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```
          be careful: the final size of the <your_docker_container_name>.tar is ~9G or even 14GB !
 
@@ -167,18 +168,19 @@ $ newgrp docker
          process.
 
 3. How to user the docker file:
-         A. load the docker image to the memory:
+         
+         A. load the docker image to the memory: <br/>
          ```
          $ docker load --input <your_docker_container_name>.tar
          ```
-         and check if the container is properly loaded:
-         ```$ docker images```<br/>
+         and check if the container is properly loaded: <br/>
+         ```$ docker images```<br/> <br/>
          the output should list the uploaded container with name *<your_docker_container_name>* .
-         If the operation needs to be repeated, remove the image from memory:
+         If the operation needs to be repeated, remove the image from memory: <br/>
          ```$ docker image rm -f <your_docker_container_name>```
 
          B.in the *<cwd>* directory create additional directories: *Input_Entry*, *Output_Entry* which will be used
-         as the input directory ( *Input_Entry* ) for cv to be classified and for final df saved (in the csv format) in the output directory  ( *Output_Entry* ).
+         as the input directory ( *Input_Entry* ) for cv to be classified and for final df saved (in the csv format) in the output directory  ( *Output_Entry* ). <br/>
          ```
          $ mkdir -p Input_Entry
          $ mkdir -p Output_Entry
