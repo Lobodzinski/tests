@@ -168,15 +168,20 @@ Preparing Docker images and getting started:
    2.5. The file ( *<your_docker_container_name>.tar* ) could be transferred to any other hostwith installed Docker Engine, loaded and started as a standalone classification process.
 
 3. How to user the docker file:
+         
    3.1 load the docker image to the memory: <br/>
    ```
    $ docker load --input <your_docker_container_name>.tar
-   ```<br/>
+   ```
    and check if the container is properly loaded: <br/>
-   ```$ docker images```<br/><br/>
+   ```
+   $ docker images
+   ```
    the output should list the uploaded container with name *<your_docker_container_name>* .
    If the operation needs to be repeated, remove the image from memory: <br/>
-   ```$ docker image rm -f <your_docker_container_name>```
+   ```
+   $ docker image rm -f <your_docker_container_name>
+   ```
 
    3.2 in the *<cwd>* directory create additional directories: *Input_Entry*, *Output_Entry* which will be use as the input directory ( *Input_Entry* ) for cv to be classified and for final df saved (in the csv format) in the output directory  ( *Output_Entry* ). <br/>
    ```
