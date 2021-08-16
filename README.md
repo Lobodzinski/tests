@@ -130,9 +130,9 @@ The part 2 ('Data Labeling and model training') is done.
 ## Part 3:
 Preparing Docker images and getting started:
 
-1. Prepare docker env:
-         * install docker (not a part of this description),
-         * prepare the docker group (example for ubuntu),
+1. Prepare docker env: 
+         2. install docker (not a part of this description),
+         3.  prepare the docker group (example for ubuntu),
 ```
 $ sudo groupadd docker
 $ sudo usermod -aG docker $USER
