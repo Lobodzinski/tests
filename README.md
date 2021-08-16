@@ -162,72 +162,70 @@ Preparing Docker images and getting started:
        
 2. Creation of the Docker image
 
-  2.1. copy tar gz package to the final directory (*<cwd>*): <br/>
-       ```
-       $ cd <cwd><br/>
-       $ cp <location_path>/product_rel_01.tgz .<br/>
-       ```
+   2.1. copy tar gz package to the final directory (*<cwd>*): <br/>
+   ```
+   $ cd <cwd><br/>
+   $ cp <location_path>/product_rel_01.tgz .<br/>
+   ```
    2.2. upack the tar gz package & remove it aftewords: <br/>
-        ```
-                  $ tar zxvf product_rel_01.tgz
-                  $ rm product_rel_01.tgz
-        ```
+   ```
+   $ tar zxvf product_rel_01.tgz
+   $ rm product_rel_01.tgz
+   ```
    2.3. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !): <br/>
-        ```
-        $ docker build -t <your_docker_container_name> .
-        ```
-        due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
+   ```
+   $ docker build -t <your_docker_container_name> .
+   ```<br/>
+   due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
 
    2.4. save the container ( *<your_docker_container_name>* ) to the file <br/>
-         ```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```
-         be careful: the final size of the <your_docker_container_name>.tar is ~9G or even 14GB !
+   ```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```<br/>
+   be careful: the final size of the <your_docker_container_name>.tar is ~9G or even 14GB !
 
    2.5. The file ( *<your_docker_container_name>.tar* ) could be transferred to any other hostwith installed Docker Engine, loaded and started as a standalone classification process.
 
 3. How to user the docker file:
-   * load the docker image to the memory: <br/>
-         ```
-         $ docker load --input <your_docker_container_name>.tar
-         ```
-         and check if the container is properly loaded: <br/>
-         ```$ docker images```<br/> <br/>
-         the output should list the uploaded container with name *<your_docker_container_name>* .
-         If the operation needs to be repeated, remove the image from memory: <br/>
-         ```$ docker image rm -f <your_docker_container_name>```
+   3.1 load the docker image to the memory: <br/>
+   ```
+   $ docker load --input <your_docker_container_name>.tar
+   ```<br/>
+   and check if the container is properly loaded: <br/>
+   ```$ docker images```<br/><br/>
+   the output should list the uploaded container with name *<your_docker_container_name>* .
+   If the operation needs to be repeated, remove the image from memory: <br/>
+   ```$ docker image rm -f <your_docker_container_name>```
 
-   * in the *<cwd>* directory create additional directories: *Input_Entry*, *Output_Entry* which will be used
-         as the input directory ( *Input_Entry* ) for cv to be classified and for final df saved (in the csv format) in the output directory  ( *Output_Entry* ). <br/>
-         ```
-         $ mkdir -p Input_Entry
-         $ mkdir -p Output_Entry
-         ```
+   3.2 in the *<cwd>* directory create additional directories: *Input_Entry*, *Output_Entry* which will be use as the input directory ( *Input_Entry* ) for cv to be classified and for final df saved (in the csv format) in the output directory  ( *Output_Entry* ). <br/>
+   ```
+   $ mkdir -p Input_Entry
+   $ mkdir -p Output_Entry
+   ```
 
-   * start the uploaded container with commands:<br/>
-         for Windows:<br/>
-         ```      
-         > $myPath = (Resolve-Path .).Path
-         > docker run --network=host -a stdout -i \
-         --mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
-         --mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
-         -t <your_docker_container_name>
-         ```
+   3.3 start the uploaded container with commands:<br/>
+   for Windows:<br/>
+   ```      
+   > $myPath = (Resolve-Path .).Path
+   > docker run --network=host -a stdout -i \
+     --mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
+     --mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
+     -t <your_docker_container_name>
+   ```<br/>
 
-         for linux:<br/>
-         ```
-         $ myPath=`pwd`
-         $ docker run --network=host -a stdout -i \
-         --mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
-         --mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
-         -t <your_docker_container_name>
-         ```
+   for linux:<br/>
+   ```
+   $ myPath=`pwd`
+   $ docker run --network=host -a stdout -i \
+     --mount type=bind,source=$myPath/Input_Entry,target=/root/src/input \
+     --mount type=bind,source=$myPath/Output_Entry,target=/root/src/output \
+     -t <your_docker_container_name>
+   ```
 
-         this command will start the standalone daemon which will process each new CV entering the
-         input directory Input_Entry .<br/>
-         First, the models are initialized and the program needs a minute before all the initiations steps have been completed.
-         The program is ready for semantic comparisons of the CV entries with the requested skills if the text "Initialization is succesfull !" appears.
+   this command will start the standalone daemon which will process each new CV entering the input directory Input_Entry .<br/>
+   First, the models are initialized and the program needs a minute before all the initiations steps have been completed.
+   The program is ready for semantic comparisons of the CV entries with the requested skills if the text "Initialization is succesfull !" appears.
 
-  *  An example of an output of the program for the CV processing. The input file: *EdibXIsic.pdf*:<br/>
-         """
+  3.4 An example of an output of the program for the CV processing. The input file: *EdibXIsic.pdf*:<br/>
+  """
          DEBUG: Received created file: /root/src/input/EdibXIsic.pdf;
          DEBUG: file (/root/src/input/EdibXIsic.pdf) is copied: size= 176269
          Classification stage: started ...
@@ -239,13 +237,13 @@ Preparing Docker images and getting started:
          DEBUG: stdout= b'DEBUG: script matching.py, input= /root/src/output_classification/resulting_df__EdibXIsic.csv\nDEBUG: matching_procedure: df.shape=                (52658, 5)\nfinal output: df (/root/src/output/resulting_df__EdibXIsic.csv) is ready !\n'
          DEBUG: stderr= b''
          DEBUG: done - for the time being !
-         """
-         Most control texts are preceded by the word 'DEBUG'. <br/>
-         You can disable it by changing the options from <br/>
-         *debug: True*<br/>
-         to<br/>
-         *debug: False *<br/>
-         in *product/config/config.ini*, in the *[Debug]* category.
+  """<br/>
+  Most control texts are preceded by the word 'DEBUG'. <br/>
+  You can disable it by changing the options from <br/>
+  *debug: True*<br/>
+  to<br/>
+  *debug: False *<br/>
+  in *product/config/config.ini*, in the *[Debug]* category.
 
 4. Format of the Output Data Frame:<br/>
 The output data is created in a data frame with columns: 
