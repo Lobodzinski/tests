@@ -63,7 +63,6 @@ The data frame contains 3 columns named: <br/>
 *'entry','tag','entry_orig'*<br/>
 where the *'entry'* and *'entry_orig'* columns contain the extracted phrases that should be classified . The phrases in the *'entry'* are written with small letters and without special signs. Original formulation is saved in the *'entry_orig'* column . This is due to the requirements of the model related to the list of special characters.  <br/>
 The phrases should be classified according to the scheme:<br/>
-
 class of the phrase: | tag/label value: 
 ------------ | -------------
 personal     |             0
@@ -72,8 +71,6 @@ education      |           2
 experience       |         3
 skills             |       4
 summary              |     5
-
-
 The result of tagging/classifying phrases should be stored in the *'tag'* column as natural numbers.
 After completing this process and saving the data, we can proceed to the model training step.
 
@@ -99,7 +96,6 @@ If the results are better (confussion matrix, F1-score) then use the new model i
 
 5. Current model:
 The classification report of the currently operating model is as follows:
-
 ```
               precision    recall  f1-score   support
 
@@ -114,7 +110,6 @@ The classification report of the currently operating model is as follows:
    macro avg       0.79      0.82      0.80       170
 weighted avg       0.85      0.85      0.85       170
 ```
-
 The confusion matrix is shown on the Figure *'Classification_report__confusion_matrix.png'*.
 
 6. Model update:
