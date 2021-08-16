@@ -161,10 +161,10 @@ Preparing Docker images and getting started:
        
 2. Creation of the Docker image
 
-  2.1. copy tar gz package to the final directory (*<cwd>*): 
+  2.1. copy tar gz package to the final directory (*<cwd>*): <br/>
        ```
-       $ cd <cwd>
-       $ cp <location_path>/product_rel_01.tgz .
+       $ cd <cwd><br/>
+       $ cp <location_path>/product_rel_01.tgz .<br/>
        ```
    2.2. upack the tar gz package & remove it aftewords: <br/>
         ```
