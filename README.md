@@ -131,8 +131,8 @@ The part 2 ('Data Labeling and model training') is done.
 Preparing Docker images and getting started:
 
 1. Prepare docker env:
-         A. install docker (not a part of this description),
-         B. prepare the docker group (example for ubuntu),
+         * install docker (not a part of this description),
+         * prepare the docker group (example for ubuntu),
 ```
 $ sudo groupadd docker
 $ sudo usermod -aG docker $USER
@@ -140,35 +140,32 @@ $ newgrp docker
 ```
 
 2. Creation of the Docker image
-A. copy tar gz package to the final directory (*<cwd>*): <br/>
+         * copy tar gz package to the final directory (*<cwd>*): <br/>
          ```
                   $ cd <cwd>
                   $ cp <location_path>/product_rel_01.tgz .
          ```
 
-B. upack the tar gz package & remove it aftewords: <br/>
+         * upack the tar gz package & remove it aftewords: <br/>
          ```
                   $ tar zxvf product_rel_01.tgz
                   $ rm product_rel_01.tgz
          ```
 
-C. build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !): <br/>
+         * build the docker file: in *<cwd>* directory start the command (Don't forget the dot at the end of the command !): <br/>
          ```
          $ docker build -t <your_docker_container_name> .
          ```
          due to the large size of the torch packages  (> 800MB) be sure that the connection to the network is stable and fast !
 
-D. save the container ( *<your_docker_container_name>* ) to the file <br/>
+         * save the container ( *<your_docker_container_name>* ) to the file <br/>
          ```$ docker save <your_docker_container_name> -o <your_docker_container_name>.tar```
          be careful: the final size of the <your_docker_container_name>.tar is ~9G or even 14GB !
 
-E. The file ( *<your_docker_container_name>.tar* ) could be transferred to any other host
-         with installed Docker Engine, loaded and started as a standalone classification
-         process.
+         * The file ( *<your_docker_container_name>.tar* ) could be transferred to any other hostwith installed Docker Engine, loaded and started as a standalone classification process.
 
 3. How to user the docker file:
-         
-         A. load the docker image to the memory: <br/>
+   * load the docker image to the memory: <br/>
          ```
          $ docker load --input <your_docker_container_name>.tar
          ```
@@ -178,14 +175,14 @@ E. The file ( *<your_docker_container_name>.tar* ) could be transferred to any o
          If the operation needs to be repeated, remove the image from memory: <br/>
          ```$ docker image rm -f <your_docker_container_name>```
 
-         B.in the *<cwd>* directory create additional directories: *Input_Entry*, *Output_Entry* which will be used
+   * in the *<cwd>* directory create additional directories: *Input_Entry*, *Output_Entry* which will be used
          as the input directory ( *Input_Entry* ) for cv to be classified and for final df saved (in the csv format) in the output directory  ( *Output_Entry* ). <br/>
          ```
          $ mkdir -p Input_Entry
          $ mkdir -p Output_Entry
          ```
 
-         C. start the uploaded container with commands:<br/>
+   * start the uploaded container with commands:<br/>
          for Windows:<br/>
          ```      
          > $myPath = (Resolve-Path .).Path
@@ -209,7 +206,7 @@ E. The file ( *<your_docker_container_name>.tar* ) could be transferred to any o
          First, the models are initialized and the program needs a minute before all the initiations steps have been completed.
          The program is ready for semantic comparisons of the CV entries with the requested skills if the text "Initialization is succesfull !" appears.
 
-         D. An example of an output of the program for the CV processing. The input file: *EdibXIsic.pdf*:<br/>
+  *  An example of an output of the program for the CV processing. The input file: *EdibXIsic.pdf*:<br/>
          """
          DEBUG: Received created file: /root/src/input/EdibXIsic.pdf;
          DEBUG: file (/root/src/input/EdibXIsic.pdf) is copied: size= 176269
