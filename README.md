@@ -19,7 +19,7 @@ In general, the semantic comparison workflow between the text in the candidate's
 1. the supervised part, which consists of 
          - extracting phrases from the CV file in pdf format,
          - training a model which classifies phrases into one of the groups: <br/>
-         *personal (category 0), languages (1), education (2), experience (3), skills (4) and summary (5)*.
+         *personal (category/label/tag 0), languages (1), education (2), experience (3), skills (4) and summary (5)*.
 2. unsupervised part: which consists in calculating similarity between phrases and skill descriptions.
 
 The model works for German and English.
