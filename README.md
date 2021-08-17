@@ -37,6 +37,7 @@ You can select a module by creating a link <br/>
 ```$ ln -s <selected_mode> product```
 
 ### Proper structure of files and directories in the main directory *product*.<br/>
+This structure must be reproduced in order for all components of the algorithm to work correctly.<br/>
 files:
 ```
 ├── Dockerfile
