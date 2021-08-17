@@ -36,7 +36,7 @@ Its docker image is 14.7GB
 You can select a module by creating a link <br/>
 ```$ ln -s <selected_mode> product```
 
-### Proper structure of directories and files in the main directory *product*.<br/>
+### Proper structure of files and directories in the main directory *product*.<br/>
 files:
 ```
 ├── Dockerfile
