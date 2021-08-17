@@ -36,6 +36,58 @@ Its docker image is 14.7GB
 You can select a module by creating a link <br/>
 ```$ ln -s <selected_mode> product```
 
+### Proper structure of directories and files in the main directory *product*.<br/>
+files:
+```
+├── Dockerfile
+├── output_classification
+├── product_rel_01.tgz
+├── requirements__py37_env1.txt
+├── requirements__py37_env2.txt
+```
+Directories with listed files:
+```
+├── input
+│   ├── .
+│   ├── ..
+├── output
+│   ├── .
+│   ├── ..
+├── envs
+│   ├── py37_env1
+│   └── py37_env2
+├── config
+│   ├── config.ini
+│   └── config.ini__net_access
+├── labeling_and_training
+│   ├── external.py -> ../scripts/external.py
+│   ├── __init__.py
+│   ├── model_classification.py -> ../scripts/model_classification.py
+│   ├── model_definitions.py -> ../scripts/model_definitions.py
+│   ├── models
+│   ├── p2_sentence_classification__training_model_BERT_classifier__official.ipynb
+│   ├── process__labeling_preparation.py
+│   └── __pycache__
+├── models
+│   ├── bert-base-multilingual-cased-finetuned-conll03-dutch
+│   ├── best_model_state.bin
+│   ├── best_train_model_state.bin
+│   ├── history.npy
+│   └── msmarco-distilbert-multilingual-en-de-v2-tmp-lng-aligned
+├── scripts
+│   ├── external.py
+│   ├── __init__.py
+│   ├── matching.py
+│   ├── model_classification.py
+│   ├── model_definitions.py
+│   ├── model_matching.py
+│   ├── __pycache__
+│   └── server_classification.py
+└── skills
+    ├── query_result_2021-05-12T12 45 13.528106Z.csv
+    └── skills.csv -> query_result_2021-05-12T12 45 13.528106Z.csv
+```
+
 
 ## Part 2:
 Data Labeling and model training:
