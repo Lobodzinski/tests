@@ -127,6 +127,20 @@ Below is a list with their description:
 Locations of files and directories are preceded by the *'__root_dir__'* variable.
 This variable is set automatically by the framework, **it must remain unchanged**.    
 
+### Pretrained models:
+
+The whole framework is based on 2 pretrained models:
+1. for phrase classification: 
+*'https://huggingface.co/dbmdz/bert-base-multilingual-cased-finetuned-conll03-dutch'*
+with description:
+*'https://metatext.io/models/dbmdz-bert-base-multilingual-cased-finetuned-conll03-dutch*' .
+3. used for asymmetric semantic comparison: 
+*'https://public.ukp.informatik.tu-darmstadt.de/reimers/sentence-transformers/v0.2/msmarco-distilbert-multilingual-en-de-v2-tmp-lng-aligned.zip'*
+with interesting discussion and description:
+*'https://github.com/Lobodzinski/tests/blob/main/README.md'* 
+
+
+
 
 ## Part 3:
 Data Labeling and model training:
@@ -183,7 +197,8 @@ with customized additional layers.
 This combination allows us to achieve good results in phrase classification specific to our problem using a small sample of tagged input data (phrases).
 
 Hints for better models:<br/>
-- check regularly the public transformer base of pretrained models (https://huggingface.co/dbmdz).<br/>
+- check regularly the public transformer base of pretrained models (https://huggingface.co/dbmdz) and entire discussion about transformers. 
+Perhaps there will be better pretrained models than those currently available (see section **part 2**, **Pretrained models**) <br/>
 - Investigate how the new public pretrained models affect the final training result. 
 If the results are better (confussion matrix, F1-score) then use the new model in the production process. 
 
