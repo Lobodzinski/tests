@@ -139,7 +139,8 @@ with description:
 with interesting discussion and description:
 *'https://github.com/Lobodzinski/tests/blob/main/README.md'* 
 
-
+#### WARNING: 
+Models are not available in the github repository. They are much too big.
 
 
 ## Part 3:
