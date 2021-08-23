@@ -89,8 +89,46 @@ Directories with listed files:
     └── skills.csv -> query_result_2021-05-12T12 45 13.528106Z.csv
 ```
 
-
 ## Part 2:
+Config file:
+```
+% cat config/config.ini
+[Input]
+input_directory: __root_dir__/input
+skill_directory: __root_dir__/skills
+skill_filename: skills.csv
+
+[Output]
+output_directory_classification: __root_dir__/output_classification
+output_directory: __root_dir__/output
+
+[Parameters]
+model_directory: __root_dir__/models
+model_name: best_model_state.bin
+model_transformer: __root_dir__/models/msmarco-distilbert-multilingual-en-de-v2-tmp-lng-aligned
+batch_size: 10
+max_len: 120
+pretrained_model: __root_dir__/models/bert-base-multilingual-cased-finetuned-conll03-dutch
+nr_of_classes: 6
+threshold: 0.2
+
+[Debug]
+debug: True
+```
+
+The file *'config.ini'* contains a couple of sections. <br/>
+Below is a list with their description:
+1. *'Input'*: contains a list of files necessary for the comparison. 
+*'skill_filename'* is the name of the file in csv format to be loaded from the *'Skill'* table.
+2. *'output'*: defines the internal files used to classify the phrases extracted from the CV files.
+3. *'Parameters'*: defines the pretrained models and the parameters of the models.
+4. *'Debug'*: defines whether the algorithm should work in debug mode (possible values: *'False | True'*).
+
+Locations of files and directories are preceded by the *'__root_dir__'* variable.
+This variable is set automatically by the framework, **it must remain unchanged**.    
+
+
+## Part 3:
 Data Labeling and model training:
 
 preparation of the dataframe for tagging:
@@ -180,7 +218,7 @@ the model name as value of the *'model_name'* parameter.
 
 The part 2 ('Data Labeling and model training') is done.
 
-## Part 3:
+## Part 4:
 Preparing Docker images and getting started:
 
 1. Prepare docker env: 
@@ -308,7 +346,7 @@ Experience,Bauwesen,<br/>
  "[0.60041583,0.46913487,0.41668913,0.36673641,0.35518056,0.33034697,0.32709813]"<br/>
 ....<br/>
 
-## Part 4:
+## Part 5:
 Final Setup or Placing the semantic comparison inside the production pipeline:
 
 In this section (not implemented) I would like to add some comments about the use of semantic comparison in the candidate classification process. <br/>
